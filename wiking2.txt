@@ -2,3 +2,4 @@ delete from postac where id_postaci > 6;
 
 alter table postac drop foreign key postac_ibfk_1;
 
+later table drop id_postaci;
