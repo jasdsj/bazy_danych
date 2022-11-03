@@ -1,0 +1,42 @@
+create table postac (id_postaci int primary key auto_increment, nazwa varchar(40), rodzaj enum('wiking','ptak','kobieta'),data_ur date, wiek int, check(wiek > 0));
+
+insert into postac values (1,'Bjorn','wiking','1088-01-01',30), (2, 'Drozd', 'Ptak', '1113-01-01',5),(3,'Tesciowa','kobieta','1030-01-01',80);
+
+update postac set wiek = 88 where id_postaci = 3;
+
+create table walizka (id_walizki int  primary key auto_increment, pojemnosc int, kolor enum('rozowy','czerwony','teczowy','zolty'),id_wlasciciela int, foreign key(id_wlasciciela) references postac(id_postaci) on delete set null,check (pojemnosc > 0));
+
+alter table walizka alter kolor set default 'rozowy';
+
+insert into walizka values (1, 6, 'czerwony',1), (2, 4, 'zolty', 3);
+
+create table izba (adres_budynku varchar(40), nazwa_izby varchar(40), metraz int, wlasciciel int, primary key(adres_budynku, nazwa_izby), check (metraz > 0));
+
+alter table izba add kolor_izby varchar(40) default 'czarny';
+
+create table przetwory (id_przetworu int primary key, rok_produkcji int, id_wykonawcy int, zawartosc varchar(40), dodatek varchar(40) default 'papryczka_chilli', id_konsumenta int, foreign key(id_kosumenta) references postac(id_postaci), foreign key(id_wykonawcy) references postac(id_postaci));
+
+insert into przetwory values (1, 1110, 1, 'bigos', 'papryczka_chilli', 3);
+
+insert into postac values (4, 'Andrzej', 'wiking', '1088-01-01', '30'); x5
+
+create table statek (nazwa_statku varchar(40) primary key, rodzaj_statku enum('maly', 'duzy'), data_wodowanie date, maz_ladownosc int);
+
+insert into statek values ('sokol', 'duzy', '1120-01-01', 80), ('koliber', 'maly', '1120-01-01', 30);
+
+alter table postac add funkcja varchar(40);
+
+update postac set funkcja = 'kapitan' where postac_id = 1;
+
+alter table postac add statek varchar(40), foreign key(statek) references statek(nazwa_statku);
+
+update postac set statek = 'sokol' where id_postaci < 6 and rodzaj = 'wiking';
+
+update postac set statek = 'koliber' where id_postaci > 5 and rodzaj = 'wiking';
+
+delete from izba where nazwa_izby = 'spizarnia';
+
+drop table izba;
+
+
+
