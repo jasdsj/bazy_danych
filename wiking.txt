@@ -14,6 +14,8 @@ create table izba (adres_budynku varchar(40), nazwa_izby varchar(40), metraz int
 
 alter table izba add kolor_izby varchar(40) default 'czarny';
 
+insert into izba ('norwedzka', 'spizarnia', 50, 1, 'brazowy');
+
 create table przetwory (id_przetworu int primary key, rok_produkcji int, id_wykonawcy int, zawartosc varchar(40), dodatek varchar(40) default 'papryczka_chilli', id_konsumenta int, foreign key(id_kosumenta) references postac(id_postaci), foreign key(id_wykonawcy) references postac(id_postaci));
 
 insert into przetwory values (1, 1110, 1, 'bigos', 'papryczka_chilli', 3);
