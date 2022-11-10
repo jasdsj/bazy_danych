@@ -2,4 +2,27 @@ delete from postac where id_postaci > 6;
 
 alter table postac drop foreign key postac_ibfk_1;
 
-later table drop id_postaci;
+alter table drop id_postaci;
+
+alter table postac add pesel char(11);
+
+alter table postac add primary key(pesel);
+
+alter table postac modify rodzaj enum ('wiking', 'ptak', 'kobieta', 'syrena');
+
+insert into postac values ('Gertruda Nieszczera', 'syrena', '550-01-01', 500, 'NULL','NULL','12345678900');
+
+update postac set statek = 'sokol' where nazwa like '%a%';
+
+update statek set max_ladownosc = max_ladownosc - max_ladownosc * 0.3;
+
+alter table postac add check (wiek < 1000);
+
+insert into postac values ('waz Loko', NULL, NULL, NULL, NULL, NULL, '00000000000');
+
+create table marynarz (nazwa varchar(40), rodzaj enum('wiking', 'kobieta', 'syrena', 'ptak'), data_ur date, wiek int, funkcja en   um('kapitan'), statek enum('sokol', 'koliber'), pesel char(11) primary key);
+
+
+
+
+ 
