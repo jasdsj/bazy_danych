@@ -20,7 +20,19 @@ alter table postac add check (wiek < 1000);
 
 insert into postac values ('waz Loko', NULL, NULL, NULL, NULL, NULL, '00000000000');
 
-create table marynarz (nazwa varchar(40), rodzaj enum('wiking', 'kobieta', 'syrena', 'ptak'), data_ur date, wiek int, funkcja en   um('kapitan'), statek enum('sokol', 'koliber'), pesel char(11) primary key);
+create table marynarz (nazwa varchar(40), rodzaj enum('wiking', 'kobieta', 'syrena', 'ptak'), data_ur date, wiek int, funkcja enum('kapitan'), statek enum('sokol', 'koliber'), pesel char(11) primary key);
+
+update postac set statek = 'NULL' where statek = 'sokol';
+
+delete from postac where nazwa = 'Pawel';
+
+delete from statek where max_ladownosc > 0;
+
+drop table statek;
+
+Create table zwierz (id integer primary key auto_increment, nazwa varchar(40), wiek integer);
+
+Insert into zwierz values (1, 'Drozd', 5), (2, 'Waz Loko', '700');
 
 
 
