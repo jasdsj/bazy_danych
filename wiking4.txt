@@ -1,0 +1,22 @@
+select avg(waga) from kreatura where rodzaj = "wiking";
+
+select avg(waga), count(*), rodzaj from kreatura group by rodzaj;
+
+select  round(avg(2022-year(dataUr)),0),  rodzaj from kreatura group by rodzaj;
+
+select sum(waga), rodzaj from zasob group by rodzaj;
+
+select nazwa, avg(waga) from zasob where ilosc > 4 and waga*ilosc > 10 group by nazwa;
+
+select count(distinct(nazwa)), rodzaj from zasob where ilosc > 1 group by rodzaj;
+
+select kreatura.nazwa, count(zasob.nazwa) as iloscZasobu from zasob, kreatura, ekwipunek where kreatura.idKreatury = ekwipunek.idKreatury and zasob.idZasobu= ekwipunek.idZasobu group by kreatura.nazwa;
+
+select kreatura.nazwa, zasob.nazwa as nazwaZasobu from zasob, kreatura, ekwipunek where kreatura.idKreatury = ekwipunek.idKreatury and zasob.idZasobu= ekwipunek.idZasobu;
+
+select * from kreatura left join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury where idEkwipunku is NULL;
+
+ select kreatura.nazwa, zasob.nazwa from kreatura join ekwipunek on kreatura.idKreatury= ekwipunek.idKreatury join zasob on zasob.idZasobu = ekwipunek.idZasobu where kreatura.dataUR between '1670-01-01' and '1679-12-31';
+
+select kreatura.nazwa from kreatura join ekwipunek on kreatura.idKreatury= ekwipunek.idKreatury join zasob on zasob.idZasobu = ekwipunek.idZasobu where zasob.rodzaj='jedzenie' order by kreatura.dataUr DESC limit 5;
+
